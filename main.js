@@ -96,11 +96,12 @@ window.addEventListener("click", e => {
 });
 
 restartBtn.addEventListener("click", _ => {
+    questionList = [];
     moveToPage(pages[0]);
     chooseBtn.click();
     answers.innerHTML = '<a href="#" class="close">إغلاق</a>';
     usersAnswer.value = "";
-    questionList = [];
+    timeSpent = 0;
 });
 
 addEventListener("keydown", e => {
@@ -128,26 +129,30 @@ for (let i = 0; i < tables.length; i++) {
 
 chooseBtn.addEventListener("click", _ => {
     if (document.getElementsByClassName("choosed").length) {
+        count = settings.seconds;
         choosedNumbers = document.getElementsByClassName("choosed");
         moveToPage(pages[1])
         preparingQuestions(choosedNumbers);
         timer = setInterval(_ => {
             timeSpent++;
-            timerField.textContent = `${timeSpent}ث`
+            settings.typeOfTimer == null? timerField.textContent = `${timeSpent}ث`: "";
         }, 1000);
         if (settings.typeOfTimer == "EQT") {
+            document.querySelector(".timer-field .title").textContent = "الوقت المتبقي:";
+            timerField.textContent = `${count}ث`;
             EQT = setInterval(_ => {
-                console.log("In EQT")
-                if (count == settings.seconds) {
+                if (count == 0) {
                     usersAnswer.value = "لم يتم حل السؤال";
                     confirmBtn.click();
                 };
-                count++;
+                timerField.textContent = `${count}ث`;
+                count--;
             }, 1000);
         } else if (settings.typeOfTimer == "WET") {
+            document.querySelector(".timer-field .title").textContent = "الوقت المتبقي:";
+            timerField.textContent = `${count}ث`;
             WET = setInterval(_ => {
-                console.log("In WET")
-                if (count == settings.seconds) {
+                if (count == 0) {
                     for (let i = 0; i < questionList.length; i++) {
                         answers.innerHTML += `
                             <div class="container">
@@ -164,7 +169,8 @@ chooseBtn.addEventListener("click", _ => {
                     usersAnswer.value = "لم يتم حل السؤال";
                     confirmBtn.click();
                 };
-                count++;
+                timerField.textContent = `${count}ث`;
+                count--;
             }, 1000)
         };
     };
@@ -173,7 +179,7 @@ chooseBtn.addEventListener("click", _ => {
 confirmBtn.addEventListener("click", _ => {
     const numbers = question.textContent.split(" X ");
     if (usersAnswer.value.length) {
-        EQT? count = 0: null;
+        EQT? count = settings.seconds: null;
         answers.innerHTML += `
             <div class="container">
                 <div class="question">${question.textContent}</div>
