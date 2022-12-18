@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جدول الضرب</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header>
+        <a href="#" class="home">اختيار جدول</a>
+        <a href="#" class="timer">وضع مؤقت</a>
+    </header>
+    <main>
+        <div class="choosing active">
+            <div class="tables">
+            </div>
+            <a href="#" class="choose">اختيار</a>
+        </div>
+        <div class="test">
+            <div class="question-field"></div>
+            <div class="answer-field">
+                <input type="text" maxlength="8">
+                <a href="#" class="confirm">تأكيد</a>
+            </div>
+            <div class="timer-field">
+                <div class="title">الوقت المستغرق:</div>
+                <div class="time">0ث</div>
+
+            </div>
+        </div>
+        <div class="score">
+            <div class="result"></div>
+            <div class="time-spent"></div>
+            <div class="btns">
+                <a href="#" class="restart">إعادة</a>
+                <a href="#" class="show-answers">إظهار الإجابات</a>
+            </div>
+        </div>
+        <div class="answers">
+            <a href="#" class="close">إغلاق</a>
+        </div>
+    </main>
+    <div class="timer-settings">
+        <div class="every-ques-timer timer-type">
+            <div class="title">مؤقت لكل سؤال</div>
+            <div class="activating-bar"></div>
+        </div>
+        <div class="whole-exam-timer timer-type">
+            <div class="title">مؤقت للاختبار بالكامل</div>
+            <div class="activating-bar"></div>
+        </div>
+        <input type="text" placeholder="أدخل عدد الثواني" maxlength="3">
+        <a href="#" class="apply">تطبيق</a>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>

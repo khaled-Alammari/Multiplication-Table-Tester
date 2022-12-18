@@ -1,0 +1,388 @@
+/* Settings */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* General */
+body {
+    height: 100vh;
+    background-color: #D1A186;
+}
+
+/* Header */
+header {
+    position: fixed;
+    background-color: #856A5B;
+    height: 12vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 0 10vw;
+    box-shadow: 0 0 20px 2px;
+    z-index: 10;
+    gap: 1vmin;
+    direction: rtl;
+    user-select: none;
+}
+
+header a {
+    text-decoration: none;
+    color: #D1C171;
+    border: #D1C171 solid 1px;
+    border-radius: .8vmin;
+    padding: 2vmin 4vmin;
+    font-weight: bold;
+    transition: .2s;
+}
+
+header a:hover, header .timer {
+    background-color: #D1C171;
+    color: black;
+}
+
+header .timer:hover {
+    filter: brightness(.9);
+}
+
+/* Main */
+main {
+    padding-top: 12vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+main > div:not(.active) {
+    display: none;
+}
+
+/* First Page */
+main .choosing {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 8vmin;
+    user-select: none;
+}
+
+main .choosing .tables {
+    display: flex;
+    gap: 2vmin;
+}
+
+main .choosing .tables .table {
+    position: relative;
+    color: #D1C171;
+    font-size: 4vmin;
+    font-weight: bold;
+    padding: 2.8vmin 7.5vmin;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1vmin;
+    border: .5vmin solid #584b43;
+}
+
+main .choosing .tables .table:not(.choosed):before {
+    content: "";
+    position: absolute;
+    background-color: #856A5B;
+    z-index: -1;
+    left: -1.2vmin;
+    top: -1.2vmin;
+    right: .5vmin;
+    bottom: .5vmin;
+    border-radius: 1vmin;
+    transition: .2s;
+}
+
+main .choosing .tables .table:hover::before {
+    left: -.2vmin;
+    right: -.2vmin;
+    top: -.2vmin;
+    bottom: -.2vmin;
+}
+
+main .choosing .tables .table.choosed {
+    background-color: #28a745;
+    color: white;
+    border: .5vmin solid #28a745;
+}
+
+main .choosing .choose {
+    text-decoration: none;
+    color: white;
+    font-size: 4vmin;
+    font-weight: bold;
+    padding: 2vmin 4vmin;
+    border-radius: .8vmin;
+    transition: .2s;
+    background-color: #28a745;
+}
+
+main .choosing .choose:hover, main .score .btns a:hover {
+    filter: brightness(.9);
+}
+
+/* Second Page */
+main .test, main .score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6vmin;
+    position: relative;
+    justify-content: center;
+}
+
+main .test .question-field, main .score .result, .time-spent {
+    font-weight: bold;
+    font-size: 12vmin;
+    color: #856A5B;
+}
+
+main .test .answer-field, main .score .btns{
+    display: flex;
+    gap: 2vmin;
+    direction: rtl;
+}
+
+main .test .answer-field input {
+    font-size: 5vmin;
+    border: none;
+    outline: none;
+    width: 10vw;
+    border-radius: 1vmin;
+    text-align: center;
+}
+
+main .test .answer-field .confirm, main .score .btns a, main .answers .close {
+    text-decoration: none;
+    color: white;
+    background-color: #28a745;
+    padding: 1.5vmin 3vmin;
+    border-radius: 1vmin;
+    font-size: 5vmin;
+    font-weight: bold;
+    transition: .2s;
+}
+
+main .test .answer-field .confirm:hover, main .answers .close:hover {
+    filter: brightness(.9);
+}
+
+main .test .timer-field {
+    position: absolute;
+    right: 0;
+    transform: translateX(calc(100% + 20vmin));
+    display: flex;
+    flex-direction: column;
+    font-size: 6vmin;
+    font-weight: bold;
+    direction: rtl;
+    gap: 3vmin;
+    align-items: center;
+    color: #856A5B;
+}
+
+/* Thirst Page */
+main .score {
+    gap: 0vmin;
+}
+
+main .score .btns {
+    direction: ltr;
+}
+
+main .score .btns a {
+    background-color: #856A5B;
+    color: #D1C171;
+}
+
+main .score .time-spent {
+    font-size: 3vmin;
+    margin-bottom: 6vmin;
+}
+
+/* Fourth page */
+main .answers {
+    display: flex;
+    flex-direction: column;
+    gap: 6vmin;
+    height: 100%;
+    padding: 10vh 0;
+    align-items: center;
+}
+
+main .answers .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2vmin;
+    align-items: center;
+    background-color: #856A5B;
+    border-radius: 2vmin;
+    justify-content: end;
+}
+
+main .answers .container .counter {
+    position: absolute;
+    background-color: #856A5B;
+    padding: 4vmin;
+    right: 0;
+    transform: translateX(calc(100% + 6vmin));
+    font-size: 5vmin;
+    font-weight: bold;
+    border-radius: 2vmin;
+    border: .4vmin #584b43 solid;
+    box-shadow: -.4vmin -.4vmin 0 .1vmin #856A5B,
+    -.4vmin -.4vmin 0 .2vmin inset #D1A186;
+    color: #D1C171;
+}
+
+main .answers .container .question {
+    font-size: 5vmin;
+    font-weight: bold;
+    color: #D1C171;
+    padding-top: 2vmin;
+}
+
+main .answers .answer {
+    display: flex;
+    background-color: white;
+    border-radius: inherit;
+    width: 40vw;
+    height: 15vh;
+    align-items: center;
+}
+
+main .answers .answer > * {
+    border-radius: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #28a745;
+    font-weight: bold;
+    font-size: 5vmin;
+    color: #aeffc1;
+}
+
+main .answers .answer .user-answer {
+    width: 80%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: .5vmin solid #257738;
+}
+
+main .answers .answer.wrong .user-answer {
+    background-color: #dc3545;
+    color: #ffc4c9;
+    border-right: none;
+}
+
+main .answers .answer .right-answer {
+    width: 21%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+main .answers .close {
+    background-color: #856A5B;
+    color: #D1C171;
+    order: 1;
+}
+
+/* Timer Settings */
+.timer-settings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    background-color: white;
+    padding: 10vmin;
+    border-radius: 2vmin;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6vmin;
+    font-size: 4vmin;
+    direction: rtl;
+    opacity: 0;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.timer-settings.active {
+    opacity: 1;
+    pointer-events: initial;
+    transform: translate(-50%, -50%);
+}
+
+.timer-settings > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10vmin;
+    align-items: center;
+    font-weight: bold;
+    color: #856A5B;
+    text-decoration: underline;
+    user-select: none;
+}
+
+.timer-settings > div .title {
+    cursor: pointer;
+    transition: .2s;
+    height: 100%;
+}
+
+.timer-settings > div:hover .title {
+    transform: translateY(-25%);
+}
+
+.timer-settings > div .activating-bar {
+    width: 10vmin;
+    height: 1vmin;
+    cursor: pointer;
+    background-color: #dc3545;
+}
+.timer-settings > div .activating-bar.active {
+    background-color: #28a745;
+}
+
+.timer-settings input {
+    border: none;
+    outline: none;
+    font-size: 4vmin;
+    background-color: #856A5B;
+    color: #D1C171;
+    padding: 2vmin;
+    border-radius: 1vmin;
+    width: 30vmin;
+    text-align: center;
+}
+
+.timer-settings input::placeholder {
+    color: #D1C171;
+}
+
+.timer-settings .apply {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    background-color: #D1C171;
+    padding: 2vmin 4vmin;
+    border-radius: 1vmin;
+    transition: .1s;
+}
+
+.timer-settings .apply:hover {
+    filter: brightness(.9);
+}
